@@ -1,4 +1,4 @@
-package co.vinni.soapproyectobase.entidades;
+package co.tarjetaCredito.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,8 +10,9 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "Empleado")
-public class Equipo implements Serializable {
+public class Empleado implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_EMPLEADO")
     @SequenceGenerator(name = "SEQ_EMPLEADO", sequenceName = "SEQ_EMPLEADO", allocationSize = 1)
