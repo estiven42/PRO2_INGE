@@ -1,6 +1,7 @@
-package co.tarjetaCredito.Repositorio;
+package co.tarjetaCredito.Servicios;
 
 import co.tarjetaCredito.Entidades.ClientesEntidad;
+import co.tarjetaCredito.Repositorio.ClientesRepositorio;
 import co.tarjetaCredito.Servicios.ClienteServicios;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
