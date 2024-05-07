@@ -1,0 +1,68 @@
+package co.pagosPSE.Entidades;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+
+@Entity
+@Table(name="PagosPSE")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PagosPSEEntidad {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPago;
+    @Column(nullable = false)
+    private LocalDate fechaPago;
+    @Column(nullable = false)
+    private double monto;
+    @Column(nullable = false)
+    private String numeroTarjeta;
+    @Column(nullable = false)
+    private int fkidtarjetacredito;
+}
+
+package co.pagosPSE.Repositorio;
+
+import co.pagosPSE.Entidades.PagosPSEEntidad;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PagosPSERepositorio extends JpaRepository<PagosPSEEntidad, Integer> {}
+
+package co.pagosPSE.Servicios;
+
+import co.pagosPSE.Entidades.PagosPSEEntidad;
+import co.pagosPSE.Repositorio.PagosPSERepositorio;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class PagosPSEImpl implements PagosPSEServicios {
+    private final PagosPSERepositorio repositorioPagosPSE;
+
+    @Override
+    public PagosPSEEntidad guardarPago(PagosPSEEntidad pago) {
+        return repositorioPagosPSE.save(pago);
+    }
+
+    @Override
+    public boolean validarPagosPSE(PagosPSEEntidad pago) {
+        // Aquí puedes agregar la lógica para validar el pago
+        return true;
+    }
+}
+
+package co.pagosPSE.Servicios;
+
+import co.pagosPSE.Entidades.PagosPSEEntidad;
+
+public interface PagosPSEServicios {
+    PagosPSEEntidad guardarPago(PagosPSEEntidad pago);
+    boolean validarPagosPSE(PagosPSEEntidad pago);
+}
