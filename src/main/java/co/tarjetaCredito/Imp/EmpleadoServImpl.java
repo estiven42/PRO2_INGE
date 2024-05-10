@@ -30,8 +30,17 @@ public class EmpleadoServImpl implements EmpleadoServ {
 
 
     @Override
-    public boolean validarEmpleado (String contrasena) {
-       return this.empleadoRepo.findByContrasena(contrasena);
+    public boolean validarEmpleado (String correo, String contrasena) {
+        
+    List<Empleado> emp = this.empleadoRepo.findByCorreo(correo);
+        for(Empleado objemp: emp) {
+            if(objemp.getContrasena() == contrasena){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
     }
 
 }

@@ -14,5 +14,5 @@ public interface EmpleadoServ {
 
     List<Empleado> obtenerEmpleados();
 
-    boolean validarEmpleado(String contrasena);
+    boolean validarEmpleado(String correo, String contrasena);
 }
