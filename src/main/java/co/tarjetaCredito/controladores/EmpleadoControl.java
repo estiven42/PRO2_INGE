@@ -1,4 +1,4 @@
- package co.tarjetaCredito.controladores;
+ package co.tarjetacredito.controladores;
 
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import co.tarjetaCredito.entidades.Empleado;
-import co.tarjetaCredito.repositorios.EmpleadoRepo;
-import co.tarjetaCredito.servicios.EmpleadoServ;
+import co.tarjetacredito.entidades.Empleado;
+import co.tarjetacredito.repositorios.EmpleadoRepo;
+import co.tarjetacredito.servicios.EmpleadoServ;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -41,14 +41,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
     @GetMapping("/validar/empleado")
     public String getMethodName(Model modelo, Empleado emp) {
+
         return new String();
     }
-
     @GetMapping("/listadoEmpleados")
     public String getMethodName(@RequestParam String param) {
         return "ok";
     }
     
-    
+    @GetMapping("/validar")
+    public String validarEmpleado() {
+        return "index.html";
+    }
 
 }

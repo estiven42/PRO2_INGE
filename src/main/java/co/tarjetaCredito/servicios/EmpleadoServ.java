@@ -1,12 +1,12 @@
-package co.tarjetaCredito.servicios;
+package co.tarjetacredito.servicios;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.tarjetaCredito.entidades.Empleado;
-import co.tarjetaCredito.repositorios.EmpleadoRepo;
+import co.tarjetacredito.entidades.Empleado;
+import co.tarjetacredito.repositorios.EmpleadoRepo;
 
 public interface EmpleadoServ {
     
