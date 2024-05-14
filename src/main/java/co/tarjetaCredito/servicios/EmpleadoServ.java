@@ -15,4 +15,8 @@ public interface EmpleadoServ {
     List<Empleado> obtenerEmpleados();
 
     boolean validarEmpleado(String correo, String contrasena);
+
+    List<Empleado> buscarCorreo(String correo);
+
+    Empleado exexistsByEmpleado(String correo);
 }

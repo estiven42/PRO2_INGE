@@ -43,4 +43,16 @@ public class EmpleadoServImpl implements EmpleadoServ {
         return false;
     }
 
+
+    @Override
+    public List<Empleado> buscarCorreo(String correo) {
+       return (List<Empleado>) this.empleadoRepo.findByCorreo(correo);
+    }
+
+
+    @Override
+    public Empleado exexistsByEmpleado(String correo) {
+        return (Empleado) this.exexistsByEmpleado(correo);
+    }
+
 }
