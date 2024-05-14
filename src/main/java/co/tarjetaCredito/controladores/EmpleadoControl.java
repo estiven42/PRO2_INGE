@@ -1,4 +1,4 @@
- package co.tarjetacredito.controladores;
+ package co.tarjetaCredito.controladores;
 
 
 import java.util.List;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ch.qos.logback.core.model.Model;
-import co.tarjetacredito.entidades.Empleado;
-import co.tarjetacredito.repositorios.EmpleadoRepo;
-import co.tarjetacredito.servicios.EmpleadoServ;
+import co.tarjetaCredito.entidades.Empleado;
+import co.tarjetaCredito.repositorios.EmpleadoRepo;
+import co.tarjetaCredito.servicios.EmpleadoServ;
 
 
 

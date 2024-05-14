@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
-import co.tarjetacredito.TarjetaApplication;
+import co.tarjetaCredito.TarjetaApplication;
 
-import co.tarjetacredito.TarjetaApplication;
+import co.tarjetaCredito.TarjetaApplication;
 
 @TestConfiguration(proxyBeanMethods = false)
 public class TestTarjetaApplication {
