@@ -1,4 +1,4 @@
-package co.tarjetaCredito.Imp;
+package co.tarjetacredito.Imp;
 
 
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.tarjetaCredito.entidades.Empleado;
-import co.tarjetaCredito.repositorios.EmpleadoRepo;
-import co.tarjetaCredito.servicios.EmpleadoServ;
+import co.tarjetacredito.entidades.Empleado;
+import co.tarjetacredito.repositorios.EmpleadoRepo;
+import co.tarjetacredito.servicios.EmpleadoServ;
 
 @Service
 public class EmpleadoServImpl implements EmpleadoServ {
@@ -31,9 +31,9 @@ public class EmpleadoServImpl implements EmpleadoServ {
 
     @Override
     public boolean validarEmpleado (String correo, String contrasena) {
-    List<Empleado> emp = this.empleadoRepo.findByCorreo(correo);
+    List<Empleado> emp = (List<Empleado>) this.empleadoRepo.findByCorreo(correo);
         for(Empleado objemp: emp) {
-            if(objemp.getContrasena() == contrasena){
+            if(objemp.getContrasena().equals(contrasena)){
                 return true;
             }else{
                 return false;
