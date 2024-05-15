@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @AllArgsConstructor
@@ -15,17 +16,17 @@ public class ClienteControlador {
     private final ClienteServicios servicioCliente;
 
     @PostMapping
-    public ResponseEntity guardarCliente(@RequestBody ClientesEntidad cliente) {
+    public ResponseEntity guardarCliente(@ModelAttribute ClientesEntidad cliente) {
         return new ResponseEntity(servicioCliente.gurdarCliente(cliente), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity obtenerCliente(@PathVariable("id") ClientesEntidad idCliente) {
-        return new ResponseEntity(servicioCliente.gurdarCliente(idCliente), HttpStatus.OK);
+    public ResponseEntity obtenerCliente(@PathVariable("id") Long idCliente) {
+        return new ResponseEntity(servicioCliente.obtenerUsuario(idCliente), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity modificarCliente(@PathVariable("id") Long idCliente, @RequestBody ClientesEntidad cliente) {
+    public ResponseEntity modificarCliente(@PathVariable("id") Long idCliente, @ModelAttribute ClientesEntidad cliente) {
         return new ResponseEntity(servicioCliente.modificarCliente(idCliente, cliente), HttpStatus.OK);
     }
 
@@ -36,8 +37,14 @@ public class ClienteControlador {
             return new ResponseEntity(HttpStatus.OK);
         } else
         {
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-}
+    }
 
+    @GetMapping("/validar")
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
 }

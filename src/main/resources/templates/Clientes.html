@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cliente Form</title>
+</head>
+<body>
+<h1>Cliente Formulario</h1>
+<form id="clienteForm">
+    <label for="nombre">Nombre:</label><br>
+    <input type="text" id="nombre" name="nombre"><br>
+    <label for="telefono">Telefono:</label><br>
+    <input type="text" id="telefono" name="telefono"><br>
+    <label for="correo">Correo:</label><br>
+    <input type="text" id="correo" name="correo"><br>
+    <label for="direccion">Direccion:</label><br>
+    <input type="text" id="direccion" name="direccion"><br>
+    <label for="historial_Bancario">Historial Bancario:</label><br>
+    <input type="text" id="historial_Bancario" name="historial_Bancario"><br>
+    <label for="certificados">Certificados:</label><br>
+    <input type="text" id="certificados" name="certificados"><br>
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    document.getElementById('clienteForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var cliente = {
+            nombre: document.getElementById('nombre').value,
+            telefono: document.getElementById('telefono').value,
+            correo: document.getElementById('correo').value,
+            direccion: document.getElementById('direccion').value,
+            historial_Bancario: document.getElementById('historial_Bancario').value,
+            certificados: document.getElementById('certificados').value
+        };
+        // Use fetch or axios to send a POST request to your server
+        console.log(cliente);
+    });
+</script>
+</body>
+</html>
