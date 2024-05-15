@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import co.tarjetaCredito.entidades.Empleado;
 import co.tarjetaCredito.repositorios.EmpleadoRepo;
 import co.tarjetaCredito.servicios.EmpleadoServ;
+import lombok.val;
 
 
 
@@ -35,10 +37,16 @@ import co.tarjetaCredito.servicios.EmpleadoServ;
         return ResponseEntity.badRequest().body("Guardado");
     }
 
-    @GetMapping("/validar/empleado")
-    public String getMethodName(Model modelo, Empleado emp) {
-
-        return new String();
+    @PostMapping("/validar/empleado")
+    public String validarEmpleado(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+        boolean validador = this.empleadoServ.validarEmpleado(email, password);
+        System.out.println(validador);
+        if (validador) {
+            return "/inicio";
+        } else {
+            model.addAttribute("error", "Usuario o contraseña incorrectos");
+            return "/index";
+        }
     }
     @GetMapping("/listadoEmpleados")
     public String getMethodName(@RequestParam String param) {
