@@ -1,11 +1,11 @@
-package co.tarjetacredito.repositorios;
+package co.tarjetaCredito.repositorios;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import co.tarjetacredito.entidades.Empleado;
+import co.tarjetaCredito.entidades.Empleado;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package co.tarjetacredito;
+package co.tarjetaCredito;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package co.tarjetacredito.entidades;
+package co.tarjetaCredito.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
