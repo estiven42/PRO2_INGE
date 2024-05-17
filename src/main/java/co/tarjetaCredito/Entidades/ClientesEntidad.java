@@ -1,30 +1,31 @@
-package co.tarjetaCredito.Entidades;
+package co.tarjetaCredito.entidades;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="Clientes")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-
+@AllArgsConstructor
+@Entity
+@Table(name = "Cliente")
 public class ClientesEntidad {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCliente;
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CLIENTE")
+    @SequenceGenerator(name = "SEQ_CLIENTE", sequenceName = "SEQ_CLIENTE", allocationSize = 1)
+    @Column(name = "CLI_CODIGO")
+    private long serial;
+    @Column(name = "CLI_nombre")
     private String nombre;
-    @Column(nullable = false)
-    private String telefono;
-    @Column(nullable = false)
+    @Column(name = "CLI_telefono")
+    private int telefono;
+    @Column(name = "CLI_correo")
     private String correo;
-    @Column(nullable = false)
+    @Column(name = "CLI_direccion")
     private String direccion;
-    @Column(nullable = false)
+    @Column(name = "CLI_historial_Bancario")
     private String historial_Bancario;
-    @Column(nullable = false)
+    @Column(name = "CLI_certificados")
     private String certificados;
 }
