@@ -1,4 +1,4 @@
-package co.tarjetacredito.tarjeta;
+package co.tarjetaCredito.tarjeta;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -6,7 +6,6 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.context.annotation.Bean;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
-
 import co.tarjetaCredito.TarjetaApplication;
 
 @TestConfiguration(proxyBeanMethods = false)

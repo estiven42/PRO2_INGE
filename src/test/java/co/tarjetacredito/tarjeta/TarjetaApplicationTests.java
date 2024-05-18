@@ -1,4 +1,4 @@
-package co.tarjetacredito.tarjeta;
+package co.tarjetaCredito.tarjeta;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

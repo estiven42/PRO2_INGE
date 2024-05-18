@@ -14,6 +14,5 @@ import java.util.List;
 public interface EmpleadoRepo extends CrudRepository<Empleado, Integer> {
 
         List<Empleado> findByCorreo(String correo);
-        
     
 }

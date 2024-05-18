@@ -18,8 +18,14 @@ public class EmpleadoServImpl implements EmpleadoServ {
     
 
     @Override
-    public void saveEmpleado(Empleado empleado) {
-        empleadoRepo.save(empleado);
+    public boolean saveEmpleado(Empleado empleado) {
+        List<Empleado> emp = this.empleadoRepo.findByCorreo(empleado.getCorreo());
+        if (emp.size()>0) {
+            return false;
+        }else{
+            empleadoRepo.save(empleado);
+            return true;
+        }
     }
 
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión</title>
+    <title>Banco DANDO</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,63 +30,43 @@
             text-align: center;
         }
         
-        form {
+        .button-group {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            margin-top: 20px;
         }
         
-        label {
-            margin-bottom: 5px;
-        }
-        
-        input[type="email"],
-        input[type="password"] {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-        
-        input[type="submit"] {
+        .button {
             background-color: #007bff;
             color: #fff;
             border: none;
-            padding: 10px;
+            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
         }
         
-        input[type="submit"]:hover {
+        .button:hover {
             background-color: #0056b3;
-        }
-        
-        p {
-            margin-top: 10px;
-            text-align: center;
-        }
-        
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
-        <h2>Iniciar sesión</h2>
-        <form action="/validar/empleado" method="post">
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-            <input type="submit" value="Iniciar sesión">
-        </form>
-        <p>¿No tienes una cuenta? <a href="#" th:href="@{/registroEmpleadocontrol}">Regístrate</a></p>
+        <h2>Banco DANDO</h2>
+        <div class="button-group">
+            <button class="button" onclick="redirectToCliente()">Cliente</button>
+            <button class="button" onclick="redirectToEmpleado()">Empleado</button>
+        </div>
     </div>
+    
+    <script>
+        function redirectToCliente() {
+            window.location.href = "/validarEmpleado";
+        }
+        
+        function redirectToEmpleado() {
+            window.location.href = "/validar";
+        }
+    </script>
 </body>
 </html>

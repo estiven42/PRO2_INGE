@@ -16,9 +16,7 @@ import co.tarjetaCredito.repositorios.EmpleadoRepo;
 import co.tarjetaCredito.servicios.EmpleadoServ;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
-import lombok.val;
 
 
 
@@ -27,8 +25,6 @@ import lombok.val;
 
     @Autowired
     private EmpleadoServ empleadoServ;
-    @Autowired
-    private EmpleadoRepo empleadoRepo;
 
     @PostMapping("/registro")
     public String registrarEmpleado(
@@ -41,8 +37,13 @@ import lombok.val;
         emp.setNombre(nombre);
         emp.setCorreo(email);
         emp.setContrasena(password);
-        this.empleadoServ.saveEmpleado(emp);
-        return "/index";
+        boolean validador = this.empleadoServ.saveEmpleado(emp);
+        if (validador) {
+            return "/empleado";
+        }else{
+            return "/registroEmpleado";
+        }
+        
     }
 
     @PostMapping("/validar/empleado")
@@ -52,7 +53,7 @@ import lombok.val;
             return "/inicio";
         } else {
             model.addAttribute("error", "Usuario o contraseña incorrectos");
-            return "/index";
+            return "/empleado";
         }
     }
     @GetMapping("/registroEmpleadocontrol")
@@ -67,20 +68,9 @@ import lombok.val;
     
     @GetMapping("/validar")
     public String validarEmpleado() {
-        return "index.html";
+        return "/empleado";
     }
 
-    @PostMapping("/guardar/{nombre}/{correo}{contrasena}")
-    public String postMethodName(@RequestBody String entity) {
-        entity.getBytes();
-        
-        return entity;
-    }
-
-    @GetMapping("/listaEmpledo")
-    public List<Empleado> getempleados(){
-        return (List<Empleado>) this.empleadoRepo.findAll();
-    }
     
 
 }

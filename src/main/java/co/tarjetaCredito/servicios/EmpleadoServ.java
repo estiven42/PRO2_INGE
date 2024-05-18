@@ -7,7 +7,7 @@ import co.tarjetaCredito.entidades.Empleado;
 
 public interface EmpleadoServ {
     
-    public void saveEmpleado(Empleado empleado);
+    public boolean saveEmpleado(Empleado empleado);
 
     List<Empleado> obtenerEmpleados();
 
