@@ -2,42 +2,54 @@ package co.tarjetaCredito.Controladores;
 
 import co.tarjetaCredito.Entidades.ClientesEntidad;
 import co.tarjetaCredito.Servicios.ClienteServicios;
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@AllArgsConstructor
 @RequestMapping("/clientes")
 public class ClienteControlador {
-    private final ClienteServicios servicioCliente;
 
-    @PostMapping
-    public ResponseEntity guardarCliente(@RequestBody ClientesEntidad cliente) {
-        return new ResponseEntity(servicioCliente.gurdarCliente(cliente), HttpStatus.CREATED);
+    @Autowired
+    private ClienteServicios clienteServicios;
+
+    @GetMapping("/registro")
+    public String mostrarFormularioRegistro(Model model) {
+        model.addAttribute("cliente", new ClientesEntidad());
+        return "registroCliente";
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity obtenerCliente(@PathVariable("id") ClientesEntidad idCliente) {
-        return new ResponseEntity(servicioCliente.gurdarCliente(idCliente), HttpStatus.OK);
+    @PostMapping("/guardar")
+    public String guardarCliente(@ModelAttribute("cliente") ClientesEntidad cliente) {
+        clienteServicios.guardarCliente(cliente);
+        return "redirect:/clientes/registro";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity modificarCliente(@PathVariable("id") Long idCliente, @RequestBody ClientesEntidad cliente) {
-        return new ResponseEntity(servicioCliente.modificarCliente(idCliente, cliente), HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity eliminarCliente(@PathVariable("id") Long idCliente) {
-        boolean respuesta = servicioCliente.eliminarCliente(idCliente);
-        if (respuesta == true) {
-            return new ResponseEntity(HttpStatus.OK);
-        } else
-        {
-            return new ResponseEntity(HttpStatus.OK);
+    @GetMapping("/{serial}")
+    public String obtenerCliente(@PathVariable Long serial, Model model) {
+        ClientesEntidad cliente = clienteServicios.obtenerCliente(serial);
+        if (cliente == null) {
+            throw new ClienteNoEncontradoException("Cliente no encontrado con el serial: " + serial);
         }
-}
+        model.addAttribute("cliente", cliente);
+        return "mostrarCliente";
+    }
 
+    @PutMapping("/{serial}")
+    public String modificarCliente(@PathVariable Long serial, @ModelAttribute("cliente") ClientesEntidad cliente) {
+        clienteServicios.modificarCliente(serial, cliente);
+        return "redirect:/clientes/registro";
+    }
+
+    @DeleteMapping("/{serial}")
+    public String eliminarCliente(@PathVariable Long serial) {
+        clienteServicios.eliminarCliente(serial);
+        return "redirect:/clientes/registro";
+    }
+    @ExceptionHandler(ClienteNoEncontradoException.class)
+    public String handleClienteNoEncontradoException(ClienteNoEncontradoException ex) {
+        // Aquí puedes personalizar la página de error o redirigir a otra página de error
+        return "errorClienteNoEncontrado";
+    }
 }

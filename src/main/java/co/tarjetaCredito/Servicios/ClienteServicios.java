@@ -2,10 +2,9 @@ package co.tarjetaCredito.Servicios;
 
 import co.tarjetaCredito.Entidades.ClientesEntidad;
 
-public interface ClienteServicios
-{
-    ClientesEntidad gurdarCliente(ClientesEntidad cliente);
-    ClientesEntidad obtenerUsuario(Long idCliente);
-    ClientesEntidad modificarCliente(Long idCliente, ClientesEntidad cliente);
-    boolean eliminarCliente(long idCliente);
+public interface ClienteServicios {
+    void guardarCliente(ClientesEntidad cliente);
+    ClientesEntidad obtenerCliente(Long serial);
+    ClientesEntidad modificarCliente(Long serial, ClientesEntidad cliente);
+    boolean eliminarCliente(Long serial);
 }
