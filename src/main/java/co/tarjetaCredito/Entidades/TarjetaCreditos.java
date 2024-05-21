@@ -16,30 +16,18 @@ public class TarjetaCreditos
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idTarjeta;
 
-    @Column(nullable = false)
+    @Column(name = "numeroTarjeta", nullable = false)
     private String numeroTarjeta;
 
-    @Column(nullable = false)
+    @Column(name = "limiteCredito", nullable = false)
     private double limiteCredito;
 
-    @Column(nullable = false)
+    @Column(name = "saldoActual", nullable = false)
     private double saldoActual;
 
-    @Column(nullable = false)
+    @Column(name = "fkidCliente", nullable = false)
     private int fkidCliente;
 
-    @Column(nullable = false)
+    @Column(name = "estado", nullable = false)
     private String estado;
-
-    public void asignarLimiteCredito(double limite) {
-        this.limiteCredito = limite;
-    }
-
-    public void activar() {
-        this.estado = "Activa";
-    }
-
-    public void desactivar() {
-        this.estado = "Inactiva";
-    }
 }

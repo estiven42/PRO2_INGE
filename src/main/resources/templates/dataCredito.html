@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de Tarjeta de Crédito</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Datos de Tarjeta de Crédito Generados</h1>
+    <ul class="list-group">
+        <li class="list-group-item">Número de Tarjeta: <span th:text="${tarjetaGenerada.numeroTarjeta}"></span></li>
+        <li class="list-group-item">Límite de Crédito: <span th:text="${tarjetaGenerada.limiteCredito}"></span></li>
+        <li class="list-group-item">Saldo Actual: <span th:text="${tarjetaGenerada.saldoActual}"></span></li>
+        <li class="list-group-item">ID del Cliente: <span th:text="${tarjetaGenerada.fkidCliente}"></span></li>
+        <li class="list-group-item">Estado: <span th:text="${tarjetaGenerada.estado}"></span></li>
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

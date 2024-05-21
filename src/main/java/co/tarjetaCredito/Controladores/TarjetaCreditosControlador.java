@@ -1,38 +1,34 @@
 package co.tarjetaCredito.Controladores;
 
 import co.tarjetaCredito.Entidades.TarjetaCreditos;
-import co.tarjetaCredito.Servicios.TarjetaCreditosServiciosImpl;
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import co.tarjetaCredito.IMPL.TarjetaCreditosServiciosImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@AllArgsConstructor
 @RequestMapping("/tarjetas")
 public class TarjetaCreditosControlador {
     private final TarjetaCreditosServiciosImpl servicioTarjeta;
 
-    @PostMapping
-    public ResponseEntity guardarTarjeta(@RequestBody TarjetaCreditos tarjeta) {
-        return new ResponseEntity(servicioTarjeta.generarDatosTarjetaAprobada(tarjeta.getFkidCliente(), tarjeta.getLimiteCredito(), true), HttpStatus.CREATED);
+    @Autowired
+    public TarjetaCreditosControlador(TarjetaCreditosServiciosImpl servicioTarjeta) {
+        this.servicioTarjeta = servicioTarjeta;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity obtenerTarjeta(@PathVariable("id") int idTarjeta) {
-        return new ResponseEntity(servicioTarjeta.generarDatosTarjetaAprobada(idTarjeta, 0, true), HttpStatus.OK);
+    @GetMapping("/dataCredito")
+    public String datosTarjetaCredito(Model model) {
+        TarjetaCreditos tarjetaGenerada = servicioTarjeta.generarDatosTarjetaAprobada(1, 5000.0, true);
+        model.addAttribute("tarjetaGenerada", tarjetaGenerada);
+        return "dataCredito";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity modificarTarjeta(@PathVariable("id") int idTarjeta, @RequestBody TarjetaCreditos tarjeta) {
-        servicioTarjeta.editarSolicitud(tarjeta);
-        return new ResponseEntity(HttpStatus.OK);
+    @PostMapping("/guardar")
+    public String guardarTarjeta(@ModelAttribute TarjetaCreditos tarjeta) {
+        servicioTarjeta.generarDatosTarjetaAprobada(tarjeta.getFkidCliente(), tarjeta.getLimiteCredito(), true);
+        return "redirect:/tarjetas/dataCredito";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity eliminarTarjeta(@PathVariable("id") int idTarjeta) {
-        servicioTarjeta.eliminarSolicitud((long) idTarjeta);
-        return new ResponseEntity(HttpStatus.OK);
-    }
+
 }
