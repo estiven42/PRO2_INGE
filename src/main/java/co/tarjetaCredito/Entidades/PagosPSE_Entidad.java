@@ -7,20 +7,24 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="PagosPSE")
+@Table(name = "PagosPSE")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PagosPSEEntidad {
+public class PagosPSE_Entidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPago;
-    @Column(nullable = false)
+
+    @Column(name = "fechaPago", nullable = false)
     private LocalDate fechaPago;
-    @Column(nullable = false)
+
+    @Column(name = "monto", nullable = false)
     private double monto;
-    @Column(nullable = false)
+
+    @Column(name = "numeroTarjeta", nullable = false)
     private String numeroTarjeta;
-    @Column(nullable = false)
+
+    @Column(name = "fkidtarjetacredito", nullable = false)
     private int fkidtarjetacredito;
 }

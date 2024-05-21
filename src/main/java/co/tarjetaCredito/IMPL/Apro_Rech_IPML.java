@@ -1,7 +1,8 @@
-package co.tarjetaCredito.Servicios;
+package co.tarjetaCredito.IMPL;
 
 import co.tarjetaCredito.Entidades.Apro_Rech_Entidad;
 import co.tarjetaCredito.Repositorio.Apro_Rech_Repositorio;
+import co.tarjetaCredito.Servicios.Apro_Rech_Servicios;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

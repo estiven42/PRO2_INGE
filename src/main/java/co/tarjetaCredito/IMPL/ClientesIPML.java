@@ -1,4 +1,4 @@
-package co.tarjetaCredito.Servicios;
+package co.tarjetaCredito.IMPL;
 
 import co.tarjetaCredito.Entidades.ClientesEntidad;
 import co.tarjetaCredito.Repositorio.ClientesRepositorio;

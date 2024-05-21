@@ -1,8 +1,9 @@
 package co.tarjetaCredito.Servicios;
-import co.tarjetaCredito.Entidades.PagosPSEEntidad;
+
+import co.tarjetaCredito.Entidades.PagosPSE_Entidad;
 
 public interface PagosPSEServicios {
-    PagosPSEEntidad guardarPago(PagosPSEEntidad pago);
-    boolean validarPagosPSE(PagosPSEEntidad pago);
+    PagosPSE_Entidad guardarPago(PagosPSE_Entidad pago);
 
+    boolean validarPagosPSE(PagosPSE_Entidad pago);
 }
