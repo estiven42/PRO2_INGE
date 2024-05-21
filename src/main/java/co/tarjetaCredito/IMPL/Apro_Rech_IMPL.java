@@ -3,17 +3,16 @@ package co.tarjetaCredito.IMPL;
 import co.tarjetaCredito.Entidades.Apro_Rech_Entidad;
 import co.tarjetaCredito.Repositorio.Apro_Rech_Repositorio;
 import co.tarjetaCredito.Servicios.Apro_Rech_Servicios;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class Apro_Rech_IPML implements Apro_Rech_Servicios {
+public class Apro_Rech_IMPL implements Apro_Rech_Servicios {
     private final Apro_Rech_Repositorio solicitudRepository;
 
     @Autowired
-    public Apro_Rech_IPML(Apro_Rech_Repositorio solicitudRepository) {
+    public Apro_Rech_IMPL(Apro_Rech_Repositorio solicitudRepository) {
         this.solicitudRepository = solicitudRepository;
     }
 

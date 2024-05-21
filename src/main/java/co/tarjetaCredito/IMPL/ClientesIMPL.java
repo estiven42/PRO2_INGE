@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class ClientesIPML implements ClienteServicios
+public class ClientesIMPL implements ClienteServicios
 {
     private final ClientesRepositorio repositoriocliente;
 
