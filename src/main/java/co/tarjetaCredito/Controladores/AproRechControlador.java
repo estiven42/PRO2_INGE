@@ -19,12 +19,12 @@ public class AproRechControlador {
     @GetMapping("/aprobar/{id}")
     public String aprobarSolicitud(@PathVariable Long id) {
         aproRechServicios.aprobarSolicitud(id);
-        return "redirect:/solicitudes"; // Redirige a la página de solicitudes
+        return "redirect:/solicitudes";
     }
 
     @GetMapping("/rechazar/{id}")
     public String rechazarSolicitud(@PathVariable Long id) {
         aproRechServicios.rechazarSolicitud(id);
-        return "redirect:/solicitudes"; // Redirige a la página de solicitudes
+        return "redirect:/solicitudes";
     }
 }

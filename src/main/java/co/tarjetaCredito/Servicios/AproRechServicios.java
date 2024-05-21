@@ -1,8 +1,8 @@
 package co.tarjetaCredito.Servicios;
 
-import co.tarjetaCredito.Entidades.AproRechEntidad; // Cambio de nombre de la entidad
+import co.tarjetaCredito.Entidades.AproRechEntidad;
 
-public interface AproRechServicios { // Cambio de nombre de la interfaz
+public interface AproRechServicios {
     AproRechEntidad aprobarSolicitud(Long id);
     AproRechEntidad rechazarSolicitud(Long id);
     void notificarClienteAprobacion();
