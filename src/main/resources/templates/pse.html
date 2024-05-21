@@ -24,14 +24,14 @@
 <body>
 <div class="container mt-5">
     <h1 class="mb-4">PSE - Pagos Seguros en Línea</h1>
-    <form>
+    <form action="/pse/realizar-pago" method="post">
         <div class="form-group">
             <label for="numeroTarjeta">Número de Tarjeta</label>
-            <input type="text" class="form-control" id="numeroTarjeta" placeholder="Ingrese su número de tarjeta">
+            <input type="text" class="form-control" id="numeroTarjeta" name="numeroTarjeta" placeholder="Ingrese su número de tarjeta">
         </div>
         <div class="form-group">
             <label for="monto">Monto</label>
-            <input type="number" class="form-control" id="monto" placeholder="Ingrese el monto a pagar">
+            <input type="number" class="form-control" id="monto" name="monto" placeholder="Ingrese el monto a pagar">
         </div>
         <button type="submit" class="btn btn-primary">Realizar Pago</button>
     </form>
