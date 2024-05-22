@@ -1,0 +1,151 @@
+package co.tarjetaCredito.Entidades;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "Cliente")
+public class ClientesEntidad {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CLIENTE")
+    @SequenceGenerator(name = "SEQ_CLIENTE", sequenceName = "SEQ_CLIENTE", allocationSize = 1)
+    @Column(name = "CLI_CODIGO")
+    private long serial;
+    @Column(name = "CLI_nombre")
+    private String nombre;
+    @Column(name = "CLI_telefono")
+    private int telefono;
+    @Column(name = "CLI_correo")
+    private String correo;
+    @Column(name = "CLI_direccion")
+    private String direccion;
+    @Column(name = "CLI_historial_Bancario")
+    private String historial_Bancario;
+    @Column(name = "CLI_certificados")
+    private String certificados;
+}
+package co.tarjetaCredito.Repositorio;
+
+import co.tarjetaCredito.Entidades.ClientesEntidad;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface ClientesRepositorio extends CrudRepository<ClientesEntidad, Long> {
+    Optional<ClientesEntidad> findById(Long serial);
+}
+package co.tarjetaCredito.Servicios;
+
+import co.tarjetaCredito.Entidades.ClientesEntidad;
+
+public interface ClienteServicios {
+    ClientesEntidad guardarCliente(ClientesEntidad cliente);
+    ClientesEntidad obtenerUsuario(Long serial);
+    ClientesEntidad modificarCliente(Long serial, ClientesEntidad cliente);
+    boolean eliminarCliente(Long serial);
+
+}
+package co.tarjetaCredito.Implementacion;
+
+import co.tarjetaCredito.Entidades.ClientesEntidad;
+import co.tarjetaCredito.Repositorio.ClientesRepositorio;
+import co.tarjetaCredito.Servicios.ClienteServicios;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class ClientesIMPL implements ClienteServicios {
+
+    @Autowired
+    private ClientesRepositorio clientesRepositorio;
+
+    @Override
+    public ClientesEntidad guardarCliente(ClientesEntidad cliente) {
+        return clientesRepositorio.save(cliente);
+    }
+
+    @Override
+    public ClientesEntidad obtenerUsuario(Long serial) {
+        Optional<ClientesEntidad> clienteOpt = clientesRepositorio.findById(serial);
+        return clienteOpt.orElse(null);
+    }
+
+    @Override
+    public ClientesEntidad modificarCliente(Long serial, ClientesEntidad cliente) {
+        if (clientesRepositorio.existsById(serial)) {
+            cliente.setSerial(serial);
+            return clientesRepositorio.save(cliente);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean eliminarCliente(Long serial) {
+        if (clientesRepositorio.existsById(serial)) {
+            clientesRepositorio.deleteById(serial);
+            return true;
+        }
+        return false;
+    }
+}
+package co.tarjetaCredito.Controladores;
+
+import co.tarjetaCredito.Entidades.ClientesEntidad;
+import co.tarjetaCredito.Servicios.ClienteServicios;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@AllArgsConstructor
+@RequestMapping("/clientes")
+public class ClienteControlador {
+    private final ClienteServicios servicioCliente;
+
+    @PostMapping
+    public ResponseEntity<ClientesEntidad> guardarCliente(@RequestBody ClientesEntidad cliente) {
+        ClientesEntidad clienteGuardado = servicioCliente.guardarCliente(cliente);
+        return new ResponseEntity<>(clienteGuardado, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClientesEntidad> obtenerCliente(@PathVariable("id") Long idCliente) {
+        ClientesEntidad cliente = servicioCliente.obtenerUsuario(idCliente);
+        if (cliente != null) {
+            return new ResponseEntity<>(cliente, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientesEntidad> modificarCliente(@PathVariable("id") Long idCliente, @RequestBody ClientesEntidad cliente) {
+        ClientesEntidad clienteModificado = servicioCliente.modificarCliente(idCliente, cliente);
+        if (clienteModificado != null) {
+            return new ResponseEntity<>(clienteModificado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarCliente(@PathVariable("id") Long idCliente) {
+        boolean respuesta = servicioCliente.eliminarCliente(idCliente);
+        if (respuesta) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+}

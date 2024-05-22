@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Cliente</title>
+    <!-- CSS de Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container">
+    <h2 class="text-center">Registro de Cliente</h2>
+    <form action="/clientes/guardar" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" class="form-control" id="telefono" name="telefono" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" class="form-control" id="correo" name="correo" required>
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" required>
+        </div>
+        <div class="form-group">
+            <label for="historial_Bancario">Historial Bancario:</label>
+            <input type="file" class="form-control-file" id="historial_Bancario" name="historialBancario" required>
+        </div>
+        <div class="form-group">
+            <label for="certificados">Certificados:</label>
+            <input type="file" class="form-control-file" id="certificados" name="certificados" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+    <p class="text-center">¿ create una cuenta ? <a href="#" th:href="@{/login}">Inicia sesión</a></p>
+</div>
+
+<!-- JS de Bootstrap 4 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
