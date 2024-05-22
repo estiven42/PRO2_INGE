@@ -1,4 +1,4 @@
-package co.tarjetaCredito.Controladores;
+package co.tarjetaCredito.controladores;
 
 import co.tarjetaCredito.Entidades.ClientesEntidad;
 import co.tarjetaCredito.Servicios.ClienteServicios;
@@ -16,8 +16,12 @@ public class ClienteControlador {
 
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
-        model.addAttribute("cliente", new ClientesEntidad());
         return "registroCliente";
+    }
+
+    @GetMapping("/validarCliente")
+    public String validarEmpleado() {
+        return "/cliente";
     }
 
     @PostMapping("/guardar")
@@ -26,15 +30,7 @@ public class ClienteControlador {
         return "redirect:/clientes/registro";
     }
 
-    @GetMapping("/{serial}")
-    public String obtenerCliente(@PathVariable Long serial, Model model) {
-        ClientesEntidad cliente = clienteServicios.obtenerCliente(serial);
-        if (cliente == null) {
-            throw new ClienteNoEncontradoException("Cliente no encontrado con el serial: " + serial);
-        }
-        model.addAttribute("cliente", cliente);
-        return "mostrarCliente";
-    }
+
 
     @PutMapping("/{serial}")
     public String modificarCliente(@PathVariable Long serial, @ModelAttribute("cliente") ClientesEntidad cliente) {
@@ -47,9 +43,5 @@ public class ClienteControlador {
         clienteServicios.eliminarCliente(serial);
         return "redirect:/clientes/registro";
     }
-    @ExceptionHandler(ClienteNoEncontradoException.class)
-    public String handleClienteNoEncontradoException(ClienteNoEncontradoException ex) {
-        // Aquí puedes personalizar la página de error o redirigir a otra página de error
-        return "errorClienteNoEncontrado";
-    }
+
 }

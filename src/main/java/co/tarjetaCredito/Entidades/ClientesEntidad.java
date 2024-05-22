@@ -22,10 +22,8 @@ public class ClientesEntidad {
     private int telefono;
     @Column(name = "CLI_correo")
     private String correo;
+    @Column(name = "CLI_contrasena")
+    private String contrasena;
     @Column(name = "CLI_direccion")
     private String direccion;
-    @Column(name = "CLI_historial_Bancario")
-    private String historial_Bancario;
-    @Column(name = "CLI_certificados")
-    private String certificados;
 }

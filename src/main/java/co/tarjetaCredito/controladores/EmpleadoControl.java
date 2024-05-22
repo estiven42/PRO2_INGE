@@ -26,7 +26,7 @@ import org.springframework.ui.Model;
     @Autowired
     private EmpleadoServ empleadoServ;
 
-    @PostMapping("/registro")
+    @PostMapping("/registroEmpleado")
     public String registrarEmpleado(
             @RequestParam("nombre") String nombre,
             @RequestParam("email") String email,
@@ -66,7 +66,7 @@ import org.springframework.ui.Model;
         return "ok";
     }
     
-    @GetMapping("/validar")
+    @GetMapping("/validarEmpleado")
     public String validarEmpleado() {
         return "/empleado";
     }
