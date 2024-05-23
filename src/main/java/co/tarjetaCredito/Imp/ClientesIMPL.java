@@ -28,7 +28,6 @@ public class ClientesIMPL implements ClienteServicios {
     @Override
     public ClientesEntidad modificarCliente(Long serial, ClientesEntidad cliente) {
         if (clientesRepositorio.existsById(serial)) {
-            cliente.setSerial(serial);
             return clientesRepositorio.save(cliente);
         }
         return null;

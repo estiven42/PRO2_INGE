@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,16 +71,17 @@
 
 <div class="container">
   <h2>Lista de Solicitudes</h2>
+
   <table>
     <tr>
       <th>Nombre del Solicitante</th>
       <th>Fecha de Solicitud</th>
       <th></th>
     </tr>
-    <tr class="solicitud-item">
-      <td>Juan Pérez</td>
-      <td>2024-05-16</td>
-      <td><button onclick="mostrarDetalles(1)">Datos de la Solicitud</button></td>
+    <tr th:each="cliente : ${clientes}">
+      <td>${cliente.nombre}</td>
+      <td>${cliente.correo}</td>
+      <td><button onclick="mostrarDetalles(${cliente.serial})">Datos de la Solicitud</button></td>
     </tr>
   </table>
   
@@ -107,6 +109,7 @@
         <button onclick="aprobarSolicitud(1)">Aprobar</button>
         <button onclick="rechazarSolicitud(1)">Rechazar</button>
     </div>
+  </div>
 </div>
 
 

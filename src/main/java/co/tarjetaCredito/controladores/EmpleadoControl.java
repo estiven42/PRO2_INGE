@@ -1,6 +1,7 @@
  package co.tarjetaCredito.controladores;
 
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,10 @@ import org.springframework.ui.Model;
             @RequestParam("password") String password) {
         
         Empleado emp = new Empleado();
-
         emp.setNombre(nombre);
         emp.setCorreo(email);
         emp.setContrasena(password);
+
         boolean validador = this.empleadoServ.saveEmpleado(emp);
         if (validador) {
             return "/empleado";
@@ -50,6 +51,8 @@ import org.springframework.ui.Model;
     public String validarEmpleado(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
         boolean validador = this.empleadoServ.validarEmpleado(email, password);
         if (validador) {
+            System.out.println(this.empleadoServ.obtenerEmpleados());
+            model.addAttribute("clientes", this.empleadoServ.obtenerEmpleados());
             return "/inicio";
         } else {
             model.addAttribute("error", "Usuario o contraseña incorrectos");
