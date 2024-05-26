@@ -6,8 +6,6 @@ import co.tarjetaCredito.Servicios.ClienteServicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class ClientesIMPL implements ClienteServicios {
 
@@ -21,8 +19,7 @@ public class ClientesIMPL implements ClienteServicios {
 
     @Override
     public ClientesEntidad obtenerCliente(Long serial) {
-        Optional<ClientesEntidad> clienteOpt = clientesRepositorio.findById(serial);
-        return clienteOpt.orElse(null);
+        return clientesRepositorio.findById(serial).orElse(null);
     }
 
     @Override

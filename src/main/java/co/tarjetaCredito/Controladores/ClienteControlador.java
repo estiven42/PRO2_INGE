@@ -17,39 +17,12 @@ public class ClienteControlador {
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("cliente", new ClientesEntidad());
-        return "registroCliente";
+        return "registroCliente"; // Devuelve la vista para el formulario de registro
     }
 
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute("cliente") ClientesEntidad cliente) {
         clienteServicios.guardarCliente(cliente);
-        return "redirect:/clientes/registro";
-    }
-
-    @GetMapping("/{serial}")
-    public String obtenerCliente(@PathVariable Long serial, Model model) {
-        ClientesEntidad cliente = clienteServicios.obtenerCliente(serial);
-        if (cliente == null) {
-            throw new ClienteNoEncontradoException("Cliente no encontrado con el serial: " + serial);
-        }
-        model.addAttribute("cliente", cliente);
-        return "mostrarCliente";
-    }
-
-    @PutMapping("/{serial}")
-    public String modificarCliente(@PathVariable Long serial, @ModelAttribute("cliente") ClientesEntidad cliente) {
-        clienteServicios.modificarCliente(serial, cliente);
-        return "redirect:/clientes/registro";
-    }
-
-    @DeleteMapping("/{serial}")
-    public String eliminarCliente(@PathVariable Long serial) {
-        clienteServicios.eliminarCliente(serial);
-        return "redirect:/clientes/registro";
-    }
-    @ExceptionHandler(ClienteNoEncontradoException.class)
-    public String handleClienteNoEncontradoException(ClienteNoEncontradoException ex) {
-        // Aquí puedes personalizar la página de error o redirigir a otra página de error
-        return "errorClienteNoEncontrado";
+        return "redirect:/clientes/registro"; // Redirige al formulario de registro después de guardar
     }
 }
