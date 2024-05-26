@@ -1,10 +1,10 @@
-package co.tarjetaCredito.Servicios;
+package co.tarjetaCredito.servicios;
 
-import co.tarjetaCredito.Entidades.ClientesEntidad;
+import co.tarjetaCredito.entidades.Cliente;
 
 public interface ClienteServicios {
-    void guardarCliente(ClientesEntidad cliente);
-    ClientesEntidad obtenerCliente(Long serial);
-    ClientesEntidad modificarCliente(Long serial, ClientesEntidad cliente);
-    boolean eliminarCliente(Long serial);
+    void guardarCliente(Cliente cliente);
+    Cliente obtenerCliente(Integer serial);
+    Cliente modificarCliente(Integer serial, Cliente cliente);
+    boolean eliminarCliente(Integer serial);
 }

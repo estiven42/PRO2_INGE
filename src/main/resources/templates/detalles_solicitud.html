@@ -19,10 +19,10 @@
 
         .container {
             background-color: #fff;
-            padding: 20px;
+            padding: 40px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 600px;
+            width: 800px;
         }
 
         h2 {
@@ -46,43 +46,59 @@
             background-color: #f2f2f2;
         }
 
-        .btn-detalles {
-            background-color: #4CAF50;
-            color: white;
-            padding: 8px 16px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+        .btn-approve, .btn-reject {
+            padding: 6px 12px;
+            border: none;
             border-radius: 4px;
             cursor: pointer;
         }
 
-        .btn-detalles:hover {
-            background-color: #45a049;
+        .btn-approve {
+            background-color: #4CAF50;
+            color: white;
         }
 
+        .btn-reject {
+            background-color: #f44336;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Listado de Solicitudes de Tarjeta de Crédito</h2>
+    <h2> Solicitud </h2>
     <table>
         <tr>
             <th>ID Solicitud</th>
-            <th>Nombre Cliente</th>
             <th>Estado</th>
+            <th>Sueldo Mensual</th>
             <th>Fecha de Creación</th>
-            <th></th>
+            <th>Nombre del Cliente</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
         </tr>
-        <!-- Aquí puedes iterar sobre la lista de solicitudes y generar las filas de la tabla -->
         <tr th:each="solicitud : ${solicitudes}">
             <td th:text="${solicitud.idSolicitud}"></td>
-            <td th:text="${solicitud.cliente.nombre}"></td>
             <td th:text="${solicitud.estado.descripcion}"></td>
+            <td th:text="${solicitud.sueldomensual}"></td>
             <td th:text="${#temporals.format(solicitud.fechaCreacion, 'dd/MM/yyyy')}"></td>
+            <td th:text="${solicitud.cliente.nombre}"></td>
+            <td th:text="${solicitud.cliente.telefono}"></td>
+            <td th:text="${solicitud.cliente.correo}"></td>
+            <td th:text="${solicitud.cliente.direccion}"></td>
             <td>
-                <a th:href="@{'/detalles/' + ${solicitud.idSolicitud}}" class="btn-detalles">Detalles de la Solicitud</a>
+                <!-- Botones para aprobar o rechazar cada solicitud -->
+                <form th:action="@{/aprobarSolicitud}" method="post" style="display: inline;">
+                    <input type="hidden" name="idSolicitud" th:value="${solicitud.idSolicitud}">
+                    <button type="submit" class="btn-approve">Aprobar</button>
+                </form>
+                <form th:action="@{/rechazarSolicitud}" method="post" style="display: inline;">
+                    <input type="hidden" name="idSolicitud" th:value="${solicitud.idSolicitud}">
+                    <button type="submit" class="btn-reject">Rechazar</button>
+                </form>
             </td>
         </tr>
     </table>

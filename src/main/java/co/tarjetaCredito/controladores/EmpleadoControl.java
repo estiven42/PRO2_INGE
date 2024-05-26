@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.tarjetaCredito.entidades.Empleado;
 import co.tarjetaCredito.repositorios.EmpleadoRepo;
 import co.tarjetaCredito.servicios.EmpleadoServ;
+import co.tarjetaCredito.servicios.SolicitudTarjetaCreditoServ;
 
 import org.springframework.ui.Model;
 
@@ -27,7 +28,10 @@ import org.springframework.ui.Model;
     @Autowired
     private EmpleadoServ empleadoServ;
 
-    @PostMapping("/registroEmpleado")
+    @Autowired
+    private SolicitudTarjetaCreditoServ solicitudTarjetaCreditoServ;
+
+    @PostMapping("/registro")
     public String registrarEmpleado(
             @RequestParam("nombre") String nombre,
             @RequestParam("email") String email,
@@ -51,8 +55,8 @@ import org.springframework.ui.Model;
     public String validarEmpleado(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
         boolean validador = this.empleadoServ.validarEmpleado(email, password);
         if (validador) {
-            System.out.println(this.empleadoServ.obtenerEmpleados());
-            model.addAttribute("clientes", this.empleadoServ.obtenerEmpleados());
+            System.err.println(solicitudTarjetaCreditoServ.listadoSolicitudes());
+            model.addAttribute("solicitudes",solicitudTarjetaCreditoServ.listadoSolicitudes());
             return "/inicio";
         } else {
             model.addAttribute("error", "Usuario o contraseña incorrectos");

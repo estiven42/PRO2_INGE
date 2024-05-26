@@ -1,8 +1,9 @@
 package co.tarjetaCredito.Imp;
 
-import co.tarjetaCredito.Entidades.ClientesEntidad;
-import co.tarjetaCredito.Repositorio.ClientesRepositorio;
-import co.tarjetaCredito.Servicios.ClienteServicios;
+import co.tarjetaCredito.servicios.ClienteServicios;
+import co.tarjetaCredito.entidades.Cliente;
+import co.tarjetaCredito.repositorios.ClienteRepo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +13,31 @@ import java.util.Optional;
 public class ClientesIMPL implements ClienteServicios {
 
     @Autowired
-    private ClientesRepositorio clientesRepositorio;
+    private ClienteRepo clienteRepo;
 
     @Override
-    public void guardarCliente(ClientesEntidad cliente) {
-        clientesRepositorio.save(cliente);
+    public void guardarCliente(Cliente cliente) {
+        clienteRepo.save(cliente);
     }
 
     @Override
-    public ClientesEntidad obtenerCliente(Long serial) {
-        Optional<ClientesEntidad> clienteOpt = clientesRepositorio.findById(serial);
+    public Cliente obtenerCliente(Integer id) {
+        Optional<Cliente> clienteOpt = clienteRepo.findById(id);
         return clienteOpt.orElse(null);
     }
 
     @Override
-    public ClientesEntidad modificarCliente(Long serial, ClientesEntidad cliente) {
-        if (clientesRepositorio.existsById(serial)) {
-            return clientesRepositorio.save(cliente);
+    public Cliente modificarCliente(Integer serial, Cliente cliente) {
+        if (clienteRepo.existsById(serial)) {
+            return clienteRepo.save(cliente);
         }
         return null;
     }
 
     @Override
-    public boolean eliminarCliente(Long serial) {
-        if (clientesRepositorio.existsById(serial)) {
-            clientesRepositorio.deleteById(serial);
+    public boolean eliminarCliente(Integer serial) {
+        if (clienteRepo.existsById(serial)) {
+            clienteRepo.deleteById(serial);
             return true;
         }
         return false;

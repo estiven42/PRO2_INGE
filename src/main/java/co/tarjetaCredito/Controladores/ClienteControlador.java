@@ -1,7 +1,8 @@
 package co.tarjetaCredito.controladores;
 
-import co.tarjetaCredito.Entidades.ClientesEntidad;
-import co.tarjetaCredito.Servicios.ClienteServicios;
+import co.tarjetaCredito.servicios.ClienteServicios;
+import co.tarjetaCredito.entidades.Cliente;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +26,7 @@ public class ClienteControlador {
     }
 
     @PostMapping("/guardar")
-    public String guardarCliente(@ModelAttribute("cliente") ClientesEntidad cliente) {
+    public String guardarCliente(@ModelAttribute("cliente") Cliente cliente) {
         clienteServicios.guardarCliente(cliente);
         return "redirect:/clientes/registro";
     }
@@ -33,13 +34,13 @@ public class ClienteControlador {
 
 
     @PutMapping("/{serial}")
-    public String modificarCliente(@PathVariable Long serial, @ModelAttribute("cliente") ClientesEntidad cliente) {
+    public String modificarCliente(@PathVariable Integer serial, @ModelAttribute("cliente") Cliente cliente) {
         clienteServicios.modificarCliente(serial, cliente);
         return "redirect:/clientes/registro";
     }
 
     @DeleteMapping("/{serial}")
-    public String eliminarCliente(@PathVariable Long serial) {
+    public String eliminarCliente(@PathVariable Integer serial) {
         clienteServicios.eliminarCliente(serial);
         return "redirect:/clientes/registro";
     }
