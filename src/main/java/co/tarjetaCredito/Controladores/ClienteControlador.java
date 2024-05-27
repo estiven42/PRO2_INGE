@@ -8,21 +8,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/clientes")
 public class ClienteControlador {
 
     @Autowired
     private ClienteServicios clienteServicios;
 
-    @GetMapping("/registro")
+    @RequestMapping("/registroCliente")
+    @GetMapping("/registroCliente")
     public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("cliente", new ClientesEntidad());
         return "registroCliente"; // Devuelve la vista para el formulario de registro
     }
 
-    @PostMapping("/guardar")
+
+    @PostMapping("/confirmacionRegistro")
     public String guardarCliente(@ModelAttribute("cliente") ClientesEntidad cliente) {
         clienteServicios.guardarCliente(cliente);
-        return "redirect:/clientes/registro"; // Redirige al formulario de registro después de guardar
+        // Redirige al usuario a la página de confirmación
+        return "redirect:/confirmacionRegistro"; // Cambia "/confirmaciones" por "/confirmacionRegistro"
     }
+
 }
