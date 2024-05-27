@@ -27,5 +27,10 @@ public class SolicitudTarjetaCreditoImp implements SolicitudTarjetaCreditoServ {
             SolicitudTarjetaCredito solicitud = solicitudOptional.get();
             return solicitud;
     }
+
+    @Override
+    public void actualizarSolicitud(SolicitudTarjetaCredito solicitud) {
+        this.solicitudTarjetaCreditoRepo.save(solicitud);
+    }
     
 }

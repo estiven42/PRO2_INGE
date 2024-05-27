@@ -5,13 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Solicitud_Tarjeta_Credito")
-public class SolicitudTarjetaCredito {
+public class SolicitudTarjetaCredito implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_solicitud")

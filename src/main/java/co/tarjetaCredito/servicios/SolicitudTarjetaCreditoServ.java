@@ -9,4 +9,6 @@ public interface SolicitudTarjetaCreditoServ {
     List<SolicitudTarjetaCredito> listadoSolicitudes();
 
     SolicitudTarjetaCredito obtenSolicitudTarjetaCredito(Integer id);
+
+    public void actualizarSolicitud(SolicitudTarjetaCredito solicitud);
 }
