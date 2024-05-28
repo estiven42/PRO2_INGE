@@ -21,7 +21,7 @@ public class Cliente implements Serializable{
     @Column(name = "CLI_nombre")
     private String nombre;
     @Column(name = "CLI_telefono")
-    private int telefono;
+    private double telefono;
     @Column(name = "CLI_correo")
     private String correo;
     @Column(name = "CLI_contrasena")

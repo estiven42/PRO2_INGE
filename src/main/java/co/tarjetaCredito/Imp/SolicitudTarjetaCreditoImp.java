@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ch.qos.logback.core.joran.conditional.ElseAction;
+import co.tarjetaCredito.entidades.Cliente;
 import co.tarjetaCredito.entidades.SolicitudTarjetaCredito;
 import co.tarjetaCredito.repositorios.SolicitudTarjetaCreditoRepo;
 import co.tarjetaCredito.servicios.SolicitudTarjetaCreditoServ;
@@ -31,6 +33,22 @@ public class SolicitudTarjetaCreditoImp implements SolicitudTarjetaCreditoServ {
     @Override
     public void actualizarSolicitud(SolicitudTarjetaCredito solicitud) {
         this.solicitudTarjetaCreditoRepo.save(solicitud);
+    }
+
+    @Override
+    public SolicitudTarjetaCredito validarCliente(Cliente cliente) {
+        SolicitudTarjetaCredito SL = solicitudTarjetaCreditoRepo.findByCliente(cliente);
+        if (SL != null) {
+            return SL;
+        }else{
+            return null;
+        }
+    
+    }
+
+    @Override
+    public void guardarSolicitud(SolicitudTarjetaCredito sl) {
+        solicitudTarjetaCreditoRepo.save(sl);
     }
     
 }

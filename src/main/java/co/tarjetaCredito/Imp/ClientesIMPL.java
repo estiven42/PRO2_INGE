@@ -2,11 +2,13 @@ package co.tarjetaCredito.Imp;
 
 import co.tarjetaCredito.servicios.ClienteServicios;
 import co.tarjetaCredito.entidades.Cliente;
+import co.tarjetaCredito.entidades.Empleado;
 import co.tarjetaCredito.repositorios.ClienteRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,8 +18,13 @@ public class ClientesIMPL implements ClienteServicios {
     private ClienteRepo clienteRepo;
 
     @Override
-    public void guardarCliente(Cliente cliente) {
-        clienteRepo.save(cliente);
+    public Cliente guardarCliente(Cliente cliente) {
+        List<Cliente> emp = this.clienteRepo.findByCorreo(cliente.getCorreo());
+        if (emp.size()>0) {
+            return null;
+        }else{
+            return clienteRepo.save(cliente);
+        }
     }
 
     @Override
@@ -41,5 +48,18 @@ public class ClientesIMPL implements ClienteServicios {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Cliente validarCliente(String correo, String contrasena) {
+        List<Cliente> cliente = (List<Cliente>) this.clienteRepo.findByCorreo(correo);
+        for(Cliente objemp: cliente) {
+            if(objemp.getContrasena().equals(contrasena)){
+                return objemp;
+            }else{
+                return null;
+            }
+        }
+        return null;
     }
 }

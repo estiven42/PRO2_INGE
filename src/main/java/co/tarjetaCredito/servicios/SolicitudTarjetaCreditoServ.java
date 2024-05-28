@@ -2,6 +2,7 @@ package co.tarjetaCredito.servicios;
 
 import java.util.List;
 
+import co.tarjetaCredito.entidades.Cliente;
 import co.tarjetaCredito.entidades.SolicitudTarjetaCredito;
 
 public interface SolicitudTarjetaCreditoServ {
@@ -11,4 +12,8 @@ public interface SolicitudTarjetaCreditoServ {
     SolicitudTarjetaCredito obtenSolicitudTarjetaCredito(Integer id);
 
     public void actualizarSolicitud(SolicitudTarjetaCredito solicitud);
+
+    SolicitudTarjetaCredito validarCliente(Cliente cliente);
+
+    void guardarSolicitud(SolicitudTarjetaCredito sl);
 }

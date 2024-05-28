@@ -19,9 +19,6 @@ import co.tarjetaCredito.servicios.SolicitudTarjetaCreditoServ;
 
 import org.springframework.ui.Model;
 
-
-
-
 @Controller
  public class EmpleadoControl {
 
@@ -31,7 +28,7 @@ import org.springframework.ui.Model;
     @Autowired
     private SolicitudTarjetaCreditoServ solicitudTarjetaCreditoServ;
 
-    @PostMapping("/registro")
+    @PostMapping("/guardarEmpleadocontrol")
     public String registrarEmpleado(
             @RequestParam("nombre") String nombre,
             @RequestParam("email") String email,
@@ -66,11 +63,6 @@ import org.springframework.ui.Model;
     @GetMapping("/registroEmpleadocontrol")
     public String getMethodName() {
         return "/registroEmpleado";
-    }
-    
-    @GetMapping("/listadoEmpleados")
-    public String getMethodName(@RequestParam String param) {
-        return "ok";
     }
     
     @GetMapping("/validarEmpleado")

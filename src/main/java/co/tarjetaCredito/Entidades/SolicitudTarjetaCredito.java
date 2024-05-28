@@ -30,6 +30,6 @@ public class SolicitudTarjetaCredito implements Serializable{
     private Cliente cliente;
 
     @Column(name = "sueldo")
-    private Integer sueldomensual;
+    private double sueldomensual;
 
 }

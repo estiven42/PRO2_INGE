@@ -3,6 +3,7 @@ package co.tarjetaCredito.Imp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.tarjetaCredito.entidades.Cliente;
 import co.tarjetaCredito.entidades.TarjetaCredito;
 import co.tarjetaCredito.repositorios.TarjetaCreditoRepo;
 import co.tarjetaCredito.servicios.TarjetaCreditoServ;
@@ -19,8 +20,8 @@ public class TarjetaCreditoImp implements TarjetaCreditoServ {
     }
 
     @Override
-    public TarjetaCredito obtenerTarjeta(Integer id) {
-        return tarjetaRepo.findById(id).orElse(null);
+    public TarjetaCredito findByCliente(Cliente cl) {
+      return tarjetaRepo.findByCliente(cl);
     }
     
 }

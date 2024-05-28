@@ -8,38 +8,32 @@
     <!-- CSS de Bootstrap 4 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-
 <body>
 <div class="container">
     <h2 class="text-center">Registro de Cliente</h2>
-    <form action="/clientes/guardar" method="post" enctype="multipart/form-data">
+    <form action="/guardarCliente" method="post" >
         <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" name="nombre" required>
         </div>
         <div class="form-group">
             <label for="telefono">Teléfono:</label>
-            <input type="tel" class="form-control" id="telefono" name="telefono" required>
+            <input type="text" class="form-control" id="telefono" name="telefono" required>
         </div>
         <div class="form-group">
             <label for="correo">Correo electrónico:</label>
             <input type="email" class="form-control" id="correo" name="correo" required>
         </div>
         <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+        </div>
+        <div class="form-group">
             <label for="direccion">Dirección:</label>
             <input type="text" class="form-control" id="direccion" name="direccion" required>
         </div>
-        <div class="form-group">
-            <label for="historial_Bancario">Historial Bancario:</label>
-            <input type="file" class="form-control-file" id="historial_Bancario" name="historialBancario" required>
-        </div>
-        <div class="form-group">
-            <label for="certificados">Certificados:</label>
-            <input type="file" class="form-control-file" id="certificados" name="certificados" required>
-        </div>
         <button type="submit" class="btn btn-primary">Registrar</button>
     </form>
-    <p class="text-center">¿ create una cuenta ? <a href="#" th:href="@{/login}">Inicia sesión</a></p>
 </div>
 
 <!-- JS de Bootstrap 4 -->
